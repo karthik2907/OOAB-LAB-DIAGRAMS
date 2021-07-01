@@ -9,15 +9,14 @@
              String staff_password="";
 			try
 			{
-
-				//Database connection
-		 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		        con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","2907");     stmt=con.createStatement(); 
-rs=stmt.executeQuery("select * from staff where username='"+username+"' and password='"+password+"'");
+		 		Class.forName("com.mysql.jdbc.Driver");
+		        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/college","root","2907");   
+                        stmt=con.createStatement(); 
+                    rs=stmt.executeQuery("select * from student where name='"+username+"' and password='"+password+"'");
 				
-	          while(rs.next())
+                          while(rs.next())
 				{				         
-				      staff_name=rs.getString("username");
+				      staff_name=rs.getString("name");
 					  staff_password=rs.getString("password");         					                        
 				} 
 				if((username.equals(staff_name)&&password.equals(staff_password)))
